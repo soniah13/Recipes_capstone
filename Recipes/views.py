@@ -18,34 +18,21 @@ def recipe_create_list(request):
     if request.method == 'GET':
         recipes = Recipe.objects.all()
         serializer = RecipeSerializer(recipes, many=True)
+        
+        # Modify the image URLs in the serializer data
+        for recipe in serializer.data:
+            image_url = recipe.get('image')
+            if image_url and 'image/upload/' in image_url:
+                # Remove the 'image/upload/' prefix from the URL
+                recipe['image'] = image_url.replace('image/upload/', '')
+        
         return Response(serializer.data)
     
     elif request.method == 'POST':
-        image_data = request.data.get('image')
-        if image_data:
-            try:
-                # Check if the image has the base64 prefix and split properly
-                if ',' in image_data:
-                    encoded = image_data.split(',', 1)[1]
-                else:
-                    encoded = image_data
-                
-                # Decode the base64 image
-                image = base64.b64decode(encoded)
-                
-                # Upload the image to Cloudinary
-                cloudinary_response = cloudinary.uploader.upload(image, resource_type='image')
-                
-                # Get the secure URL of the uploaded image
-                image_url = cloudinary_response.get('secure_url')
-                
-                # Set the image URL back to the request data
-                request.data['image'] = image_url
-            
-            except Exception as e:
-                return Response({
-                    'error': str(e)
-                }, status=status.HTTP_400_BAD_REQUEST)
+        # No need to upload the image if it is already a valid URL
+        image_url = request.data.get('image')
+        if image_url:
+            request.data['image'] = image_url  # Use the provided image URL directly
         
         # Serialize the data and save the recipe
         serializer = RecipeSerializer(data=request.data)
@@ -54,6 +41,8 @@ def recipe_create_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 class RecipeRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):

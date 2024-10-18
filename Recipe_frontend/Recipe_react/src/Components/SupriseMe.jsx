@@ -61,7 +61,7 @@ function SupriseMe() {
                 <h1 className='text-center text-3xl font-bold underline'>{recipe.name}</h1>
                 <div className='grid grid-cols-2 grid-rows-1'>
                     <div className='flex justify-center align-center'>
-                        <img src='https://res.cloudinary.com/ddqkfdqy8/image/upload/v1729161327/kdx5eina3m3vs4s7vkd0.png' alt={recipe.name} className='w-5/6 h-5/6 center object-cover my-10' />
+                        <img src={recipe.image} alt={recipe.name} className='w-5/6 h-5/6 center object-cover my-10' />
                     </div>
                     <div className='p-10'>
                         <p className='text-xl text-left p-2'><strong>Preparation Time:</strong> {recipe.prep_time}</p>

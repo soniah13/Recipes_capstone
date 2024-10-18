@@ -15,26 +15,32 @@ function RecipeDetails() {
                 return res.json();
             })
             .then(data => {
+                // Clean the image URL if it still has the prefix
+                if (data.image) {
+                    data.image = data.image.replace('image/upload/', ''); // Clean the image URL
+                }
                 setRecipe(data);
+                console.log(data.image);  // Log the cleaned image URL
             })
             .catch((error) => console.error('Error fetching data', error));
     }, [id]);
 
-    if (!recipe) return <p>Loading...</p>;
+    // Check if recipe or image is available
+    if (!recipe || !recipe.image) return <p>Loading...</p>;
 
     return (
         <div className='p-5 bg-gray-100 w-full h-full'>
             <h1 className='text-center text-3xl font-bold underline'>{recipe.name}</h1>
             <div className='grid grid-cols-2 grid-rows-1'>
                 <div className='flex justify-center align-center'>
-                    <img src={recipe.image} alt={recipe.name} className='w-5/6 h-5/6 object-cover my-10' />
+                    <img src={recipe.image} alt={recipe.name} className='w-5/6 h-5/6 center object-cover my-10' />
                 </div>
                 <div className='p-10'>
                     <h3 className='text-left text-xl font-bold mb-2'>Serving</h3>
                     <p className='text-x font-semibold'>For {recipe.serving} People</p>
-                    <h3 className='text-left text-xl font-bold mb-2'>Prepation time</h3>
+                    <h3 className='text-left text-xl font-bold mb-2'>Preparation time</h3>
                     <p className='text-x font-semibold'>{recipe.prep_time}</p>
-                    <h3 className='textleft text-xl font-bold mb-2'>Ingredients</h3>
+                    <h3 className='text-left text-xl font-bold mb-2'>Ingredients</h3>
                     <ul className='list-disc ml-5 mb-4'>
                         {recipe.ingredients && recipe.ingredients.split(',').map((ingredient, index) => (
                             <li key={index} className='text-x font-semibold'>{ingredient}</li>
@@ -44,8 +50,6 @@ function RecipeDetails() {
                     <p className='text-x font-semibold'>{recipe.procedure}</p>
                     <h3 className='text-left text-xl font-bold mb-2'>Secret to tasty</h3>
                     <p className='text-x font-semibold'>{recipe.secret}</p>
-
-                  
                     <button 
                         className='mt-4 p-2 bg-blue-500 text-white rounded'
                         onClick={() => navigate(`/recipe/${id}/edit`)}

@@ -1,6 +1,9 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 
+
+
+
 # Create your models here.
 class Recipe(models.Model):
     name = models.CharField(max_length=200)
@@ -14,5 +17,5 @@ class Recipe(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name()
+        return self.name
 

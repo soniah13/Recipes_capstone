@@ -28,10 +28,11 @@ function About() {
             </div>
 
             {/* Contact Us Section */}
-            <div className='bg-gray-200 p-10'>
-                <h2 className='text-3xl font-bold text-center mb-6'>Contact Us</h2>
+            <div className='bg-gray-200 p-5'>
+                <h2 className='text-3xl font-bold text-center mb-6'>RATE YOUR EXPERIENCE</h2>
                 <p className='text-lg text-center mb-4'>
                     We would love to hear from you! Whether you have a question, feedback, or just want to say hi, feel free to reach out to us.
+                    What can we do to improve your experience!
                 </p>
                 <div className='text-center mt-5'>
                     <button className='bg-blue-500 text-white font-bold py-2 px-4 mb-5 rounded'>

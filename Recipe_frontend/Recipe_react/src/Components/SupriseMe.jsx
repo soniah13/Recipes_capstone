@@ -58,7 +58,7 @@ function SupriseMe() {
             <p className='text-center font-bold text-2xl my-5 py-10'>Loading...</p>
         ) : recipe ? (
             <div>
-                <h1 className='text-center text-3xl font-bold underline'>{recipe.name}</h1>
+                <h1 className='text-center text-3xl font-bold'><span> Would you like to try .....</span>{recipe.name}</h1>
                 <div className='grid grid-cols-2 grid-rows-1'>
                     <div className='flex justify-center align-center'>
                         <img src={recipe.image} alt={recipe.name} className='w-5/6 h-5/6 center object-cover my-10' />

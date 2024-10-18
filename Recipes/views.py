@@ -7,9 +7,7 @@ from .models import Recipe
 from .serializers import RecipeSerializer, UserSerializer
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated,AllowAny
-import base64
-import cloudinary
-import cloudinary.uploader
+
 
 # Create your views here.
 @csrf_exempt

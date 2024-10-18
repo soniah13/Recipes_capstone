@@ -40,23 +40,31 @@ function Gallery({ recipes, setRecipes }) {
     }
 
     const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this recipe?");
+        
+        if (!confirmDelete) {
+            return; // Do nothing if the user cancels
+        }
+        
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/v1/recipes/${id}`, {
+            const response = await fetch(`http://127.0.0.1:8000/api/v1/recipes/${id}/`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-
+    
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('Failed to delete the recipe');
             }
-
+    
+            // Update state after successful deletion
             setRecipes(recipes => recipes.filter(recipe => recipe.id !== id));
         } catch (error) {
             console.error("Error deleting recipe: ", error);
         }
     };
+    
 
     const filteredRecipes = recipes.filter((recipe) => {
         const matchesSearchQuery = recipe.name.toLowerCase().includes(searchQuery.toLowerCase());

@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'; 
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 
 function Navbar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+    const navigate = useNavigate();
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    // Check login status when the component mounts
+    useEffect(() => {
+        const token = localStorage.getItem('token'); // Adjust based on your auth logic
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.clear(); // Clear user data
+        setIsLoggedIn(false); // Update state
+        navigate('/login'); // Redirect to login page
     };
 
     return (
@@ -22,7 +38,6 @@ function Navbar() {
 
                 {/* Burger menu icon for mobile */}
                 <div className='md:hidden pr-4 cursor-pointer'>
-                    {/* Correct Font Awesome class for bars icon */}
                     <i className='fas fa-bars' onClick={toggleDropdown} style={{ fontSize: '28px' }}></i>
                 </div>
 
@@ -31,8 +46,18 @@ function Navbar() {
                     <Link to='/' className='hover:border-b border-3 border-black px-3'>Home</Link>
                     <Link to='/gallery' className='hover:border-b border-3 border-black px-3'>Gallery</Link>
                     <Link to='/addRecipe' className='hover:border-b border-3 border-black px-3'>Add your Recipe</Link>
-                    <Link to='/about' className='hover:border-b border-3 border-black px-3'>About Us</Link>
                     <Link to='/suprise' className='hover:border-b border-3 border-black px-3'>Suprise Me</Link>
+                    <Link to='/about' className='hover:border-b border-3 border-black px-3'>About Us</Link>
+
+                    {/* Conditional rendering for login/register/logout */}
+                    {isLoggedIn ? (
+                        <button onClick={handleLogout} className='hover:border-b border-3 border-black px-3'>Logout</button>
+                    ) : (
+                        <>
+                            <Link to='/login' className='hover:border-b border-3 border-black px-3'>Login</Link>
+                            <Link to='/register' className='hover:border-b border-3 border-black px-3'>Register</Link>
+                        </>
+                    )}
                 </nav>
             </div>
 
@@ -45,8 +70,16 @@ function Navbar() {
                         <Link to='/addRecipe' onClick={toggleDropdown} className='hover:border-b border-3 border-black'>Add your Recipe</Link>
                         <Link to='/about' onClick={toggleDropdown} className='hover:border-b border-3 border-black'>About Us</Link>
                         <Link to='/suprise' onClick={toggleDropdown} className='hover:border-b border-3 border-black'>Suprise Me</Link>
-                        <Link to='/login' onClick={toggleDropdown} className='hover:border-b border-3 border-black'>Login</Link>
-                        <Link to='/register' onClick={toggleDropdown} className='hover:border-b border-3 border-black'>Register</Link>
+
+                        {/* Conditional rendering for mobile */}
+                        {isLoggedIn ? (
+                            <button onClick={handleLogout} className='hover:border-b border-3 border-black'>Logout</button>
+                        ) : (
+                            <>
+                                <Link to='/login' onClick={toggleDropdown} className='hover:border-b border-3 border-black'>Login</Link>
+                                <Link to='/register' onClick={toggleDropdown} className='hover:border-b border-3 border-black'>Register</Link>
+                            </>
+                        )}
                     </nav>
                 </div>
             )}

@@ -64,7 +64,7 @@ function AddRecipe({ recipes, setRecipes }) {
             };
 
             // Send recipe data including the image URL to your API
-            const response = await fetch("http://127.0.0.1:8000/api/v1/recipes", {
+            const response = await fetch("http://127.0.0.1:8000/api/v1/recipes/", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -103,44 +103,44 @@ function AddRecipe({ recipes, setRecipes }) {
     <img src='/src/assets/images/logo.png' className='mx-5 my-5' alt="Logo" />
     <h1 className='my-20 text-center font-bold text-5xl'> Welcome to Alice's Kitchen </h1>
 </div>
-<form onSubmit={addRecipe} className='h-screen w-full pt-36 flex justify-center align-center'>
-    <div className='m-10 p-10 text-2xl font-semibold border-2 border-solid bg-gray-600 h-full w-1/2 rounded-lg shadow-lg'>
+<form onSubmit={addRecipe} className='h-screen border-black w-full pt-28 flex justify-center align-center'>
+    <div className='m-10 p-10 text-2xl font-semibold border-2 border-solid bg-gray-100 h-full w-1/2 rounded-lg shadow-lg'>
         {error && <div className='text-red-400 font-bold text-xl mb-4'>{error}</div>}
-        <h1 className='text-center font-semibold text-white underline mb-6'>ADD YOUR OWN SPECIAL RECIPE</h1>
+        <h1 className='text-center font-semibold text-black mb-6'>ADD YOUR OWN SPECIAL RECIPE</h1>
 
-        <div className='flex m-4 p-2'>
+        <div className='flex m-2 p-2'>
             <label className='text-lg font-semibold p-2 w-1/3'>Name</label>
-            <input className='bg-transparent rounded-md border border-2 w-2/3 p-3' value={newRecipe.name} onChange={(e) => setNewRecipe({ ...newRecipe, name: e.target.value })} required />
+            <input className='bg-transparent rounded-md border border-black border-2 w-2/3 p-3' value={newRecipe.name} onChange={(e) => setNewRecipe({ ...newRecipe, name: e.target.value })} required />
         </div>
 
-        <div className='flex m-4 p-2'>
+        <div className='flex m-2 p-2'>
             <label className='text-lg font-semibold p-2 w-1/3'>Preparation Time</label>
-            <input className='bg-transparent rounded-md border border-2 w-2/3 p-3' value={newRecipe.prep_time} onChange={(e) => setNewRecipe({ ...newRecipe, prep_time: e.target.value })} required />
+            <input className='bg-transparent rounded-md border border-black border-2 w-2/3 p-3' value={newRecipe.prep_time} onChange={(e) => setNewRecipe({ ...newRecipe, prep_time: e.target.value })} required />
         </div>
 
-        <div className='flex m-4 p-2'>
+        <div className='flex m-2 p-2'>
             <label className='text-lg font-semibold p-2 w-1/3'>Serving</label>
-            <input className='bg-transparent rounded-md border border-2 w-2/3 p-3' value={newRecipe.serving} onChange={(e) => setNewRecipe({ ...newRecipe, serving: e.target.value })} required />
+            <input className='bg-transparent rounded-md border border-black border-2 w-2/3 p-3' value={newRecipe.serving} onChange={(e) => setNewRecipe({ ...newRecipe, serving: e.target.value })} required />
         </div>
 
-        <div className='flex m-4 p-2'>
+        <div className='flex m-2 p-2'>
             <label className='text-lg font-semibold p-2 w-1/3'>Ingredients</label>
-            <input className='bg-transparent rounded-md border border-2 w-2/3 p-2' value={newRecipe.ingredients} onChange={(e) => setNewRecipe({ ...newRecipe, ingredients: e.target.value })} required />
+            <input className='bg-transparent rounded-md border border-black border-2 w-2/3 p-2' value={newRecipe.ingredients} onChange={(e) => setNewRecipe({ ...newRecipe, ingredients: e.target.value })} required />
         </div>
 
-        <div className='flex m-4 p-2'>
+        <div className='flex m-2 p-2'>
             <label className='text-lg font-semibold p-2 w-1/3'>Procedure</label>
-            <input className='bg-transparent rounded-md border border-2 w-2/3 p-2' value={newRecipe.procedure} onChange={(e) => setNewRecipe({ ...newRecipe, procedure: e.target.value })} required />
+            <input className='bg-transparent rounded-md border border-black border-2 w-2/3 p-2' value={newRecipe.procedure} onChange={(e) => setNewRecipe({ ...newRecipe, procedure: e.target.value })} required />
         </div>
 
-        <div className='flex m-4 p-2'>
+        <div className='flex m-2 p-2'>
             <label className='text-lg font-semibold p-2 w-1/3'>Secret Ingredient</label>
-            <input className='bg-transparent rounded-md border border-2 w-2/3 p-2' value={newRecipe.secret} onChange={(e) => setNewRecipe({ ...newRecipe, secret: e.target.value })} required />
+            <input className='bg-transparent rounded-md border border-black border-2 w-2/3 p-2' value={newRecipe.secret} onChange={(e) => setNewRecipe({ ...newRecipe, secret: e.target.value })} required />
         </div>
 
-        <div className='flex m-4 p-2'>
+        <div className='flex m-2 pb-3'>
             <label className='text-lg font-semibold p-2 w-1/3'>Recipe Image</label>
-            <input type='file' className='bg-transparent rounded-md border border-2 w-2/3 p-2' onChange={handleImageUpload} required />
+            <input type='file' className='bg-transparent rounded-md border border-black border-2 w-2/3 p-2' onChange={handleImageUpload} required />
         </div>
         {imagePreview && <img src={imagePreview} alt="Preview" className="w-32 h-32 mx-auto mb-4" />}
 

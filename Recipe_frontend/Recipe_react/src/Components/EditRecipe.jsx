@@ -52,7 +52,7 @@ function EditRecipe() {
     if (!recipe) return <p>Loading...</p>;
 
     return (
-        <div className='p-5 bg-green-100'>
+        <div className='p-5 bg-gray-100'>
             <h1 className='text-center text-3xl font-bold underline'>Edit Recipe</h1>
             {error && <div className='text-red-500 text-center mb-4'>{error}</div>}
             <form onSubmit={handleSubmit} className='space-y-4'>

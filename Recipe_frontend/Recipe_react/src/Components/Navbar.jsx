@@ -46,7 +46,7 @@ function Navbar() {
                     <Link to='/' className='hover:border-b border-3 border-black px-3'>Home</Link>
                     <Link to='/gallery' className='hover:border-b border-3 border-black px-3'>Gallery</Link>
                     <Link to='/addRecipe' className='hover:border-b border-3 border-black px-3'>Add your Recipe</Link>
-                    <Link to='/suprise' className='hover:border-b border-3 border-black px-3'>Suprise Me</Link>
+                    <Link to='/suprise' className='hover:border-b border-3 border-black px-3'>Surprise Me</Link>
                     <Link to='/about' className='hover:border-b border-3 border-black px-3'>About Us</Link>
 
                     {/* Conditional rendering for login/register/logout */}

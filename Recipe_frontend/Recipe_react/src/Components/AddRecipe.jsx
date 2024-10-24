@@ -144,8 +144,7 @@ function AddRecipe({ recipes, setRecipes }) {
         </div>
         {imagePreview && <img src={imagePreview} alt="Preview" className="w-32 h-32 mx-auto mb-4" />}
 
-        <button className='font-bold text-2xl text-center bg-gray-200 text-black border border-2 rounded-3xl p-3 w-full hover:bg-gray-500 active:scale-[.98] 
-            active:duration-75 hover:scale-[1.02] ease-in-out transition-all' type='submit'>Add New Recipe</button>
+        <button className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-300" type='submit'>Add New Recipe</button>
     </div>
 </form>
 
